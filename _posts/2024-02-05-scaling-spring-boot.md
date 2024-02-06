@@ -10,7 +10,7 @@ author: Abhishake Sen Gupta
 
 ## Create a Simple Spring Boot Project
 
-Go to [Spring Initializr](https://start.spring.io/)  & initialize a project with just one dependency `spring web` with packaging `war`
+> Go to [Spring Initializr](https://start.spring.io/)  & initialize a project with just one dependency `spring web` with packaging `war`
 
 ### Controller
 
@@ -66,7 +66,7 @@ mvn clean package
 docker build -t nginx .
 ```
 
-Go to the project directory and run these above commands
+> Go to the project directory and run these above commands
 
 ### Run the Docker container
 
@@ -76,7 +76,7 @@ docker run -d -p 2222:8080 nginx:latest
 docker run -d -p 3333:8080 nginx:latest
 ```
 
-Run 3 containers with the Docker image
+> Run 3 containers with the Docker image
 
 
 ## Editing Nginx Config
@@ -103,7 +103,7 @@ http {
 events {}
 ```
 
-Go to `/etc/nginx` & edit `nginx.conf` file with the above config & restart `nginx`
+> Go to `/etc/nginx` & edit `nginx.conf` file with the above config & restart `nginx`
 
 ## Check if Nginx Load Balancer is Working
 
@@ -111,6 +111,6 @@ Go to `/etc/nginx` & edit `nginx.conf` file with the above config & restart `ngi
 curl http://localhost:8080/check
 ```
 
-Check if the response contains different container identifiers.
+> Check if the response contains different container identifiers.
 
-By combining these steps, you should be able to determine whether `Nginx` is successfully `round-robin distributing requests` among your Spring Boot containers.
+> By combining these steps, you should be able to determine whether `Nginx` is successfully `round-robin distributing requests` among your Spring Boot containers.
