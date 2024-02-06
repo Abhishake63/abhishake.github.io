@@ -585,7 +585,7 @@ footer .footer-custom-content {
 }
 
 .blog-tags a {
-  color: {{ site.text-col | default: "#404040" }};
+  color: #008AFF;
   text-decoration: none;
   padding: 0 0.3125rem;
   opacity: 0.8;
