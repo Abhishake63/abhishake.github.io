@@ -8,7 +8,7 @@ tags: [linux]
 author: Abhishake Sen Gupta
 ---
 
-## Etsy Password File
+## 1. Etsy Password File
 
 ```bash
 cat /etc/passwd
@@ -42,7 +42,7 @@ cat /etc/passwd | grep username
 abhishake:x:1000:1000:abhishake,,,:/home/abhishake:/bin/bash
 ```
 
-## Etsy Shadow File
+## 2. Etsy Shadow File
 
 ```bash
 sudo cat /etc/shadow | grep username
@@ -62,7 +62,7 @@ username:password:last_change:min_age:max_age:warning:inactive:expire:disable:re
 abhishake:$y$j9T$LOBsz9MWvNpM7HIA8FXl01$un2uvIgy4d:19158:0:99999:7:::
 ```
 
-## Adding & Deleting Users
+## 3. Adding & Deleting Users
 
 > To create the user's home directory, use the **`-m`** option with **`useradd`**:
 >
