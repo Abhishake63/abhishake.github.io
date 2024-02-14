@@ -8,21 +8,34 @@ tags: [spring-boot, nginx]
 author: Abhishake Sen Gupta
 ---
 
-## Create a Simple Spring Boot Project
+Welcome to the Spring Boot "Nginx" project! This is a simple project that demonstrates the way of scaling a Spring Boot Application using Nginx as a Load Balancer.
 
-> Go to [Spring Initializr](https://start.spring.io/)  & initialize a project with just one dependency `spring web` with packaging `war`
+## 1. Overview
 
-### Controller
+This project serves as a starting point for understanding how to scale a basic Spring Boot application using Docker for Containerization and Nginx for Load Balancing. It includes the necessary setup and dependencies to quickly get you up and running.
+
+## 2. Prerequisites
+
+Before you begin, ensure you have met the following requirements:
+
+- Java Development Kit (JDK) installed (version 17 or higher)
+- Maven build tool installed
+- Nginx, Docker installed****
+
+## 3. Maven Dependencies
+
+> First, we need to add the dependencies to our `pom.xml.`
+
+```xml
+<dependency>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-starter-web</artifactId>
+</dependency>
+```
+
+## 4. The Controller
 
 ```java
-package com.example.nginx.controller;
-
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 @RestController
 public class HelloController {
 
@@ -43,9 +56,9 @@ public class HelloController {
 }
 ```
 
-## Dockerizing the Project
+## 5. Dockerizing the Project
 
-### Dockerfile
+### 5.1. Dockerfile
 
 ```docker
 FROM eclipse-temurin:17-alpine
@@ -54,13 +67,13 @@ COPY target/*.war /opt/app/app.war
 ENTRYPOINT ["java", "-jar", "/opt/app/app.war"]
 ```
 
-### Build the WAR file
+### 5.2. Build the WAR file
 
 ```bash
 mvn clean package
 ```
 
-### Build the Docker image
+### 5.3. Build the Docker image
 
 ```bash
 docker build -t nginx .
@@ -68,7 +81,7 @@ docker build -t nginx .
 
 > Go to the project directory and run these above commands
 
-### Run the Docker container
+### 5.4. Run the Docker container
 
 ```bash
 docker run -d -p 1111:8080 nginx:latest
@@ -78,8 +91,7 @@ docker run -d -p 3333:8080 nginx:latest
 
 > Run 3 containers with the Docker image
 
-
-## Editing Nginx Config
+## 6. Editing Nginx Config
 
 ```java
 http {
@@ -105,7 +117,7 @@ events {}
 
 > Go to `/etc/nginx` & edit `nginx.conf` file with the above config & restart `nginx`
 
-## Check if Nginx Load Balancer is Working
+## 7. Check if Nginx Load Balancer is Working
 
 ```bash
 curl http://localhost:8080/check
