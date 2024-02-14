@@ -8,7 +8,7 @@ tags: [linux, dev-ops]
 author: Abhishake Sen Gupta
 ---
 
-## Add An User
+## 1. Add An User
 
 > if the only user in the server is the root user then add a user and add sudo privileges to the user
 
@@ -23,7 +23,7 @@ echo "admin ALL=(ALL)  ALL" | tee -a /etc/sudoers
 ssh admin@hostname
 ```
 
-## Generating PEM Key
+## 2. Generating PEM Key
 
 > Generate an SSH key pair and then copy the public key to a remote server
 
@@ -38,7 +38,7 @@ ssh-copy-id -i ~/.ssh/{hostname}.pub admin@hostname
 ssh -i /path/to/hostname.pem admin@hostname
 ```
 
-## **Lockdown Logins**
+## 3. Lockdown Logins
 
 > We will disable Root Login & Password Authentication & will change the Default Port in this section.
 
@@ -60,7 +60,7 @@ PasswordAuthentication no
 systemctl restart sshd
 ```
 
-## Adding a Firewall
+## 4. Adding a Firewall
 
 > Remember that having a firewall in place is generally considered a good practice for enhancing the security of your system by controlling and monitoring network traffic. However, the specific firewall solution you choose may depend on your preferences, expertise, and the needs of your system.
 
@@ -70,7 +70,7 @@ apt install ufw
 ufw allow 1011
 ```
 
-## Enable Automatic Updates
+## 5. Enable Automatic Updates
 
 ```bash
 sudo apt install unattended-upgrades
