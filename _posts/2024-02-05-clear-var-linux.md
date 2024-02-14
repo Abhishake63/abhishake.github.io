@@ -8,7 +8,7 @@ tags: [linux]
 author: Abhishake Sen Gupta
 ---
 
-## **Check Disk Space**
+## 1. Check Disk Space
 
 > Before cleaning, check your disk space usage to identify if **`/var`** is consuming a significant amount. You can use the **`df`** command to display disk space information:
 >
@@ -17,7 +17,7 @@ author: Abhishake Sen Gupta
 df -h
 ```
 
-## **Get rid of packages that are no longer required**
+## 2. Get rid of packages that are no longer required
 
 > This command removes packages that were automatically installed to satisfy dependencies but are no longer needed.
 >
@@ -26,7 +26,7 @@ df -h
 sudo apt-get autoremove
 ```
 
-## **Clean up APT cache**
+## 3. Clean up APT cache
 
 > This clears the APT package cache, which contains downloaded package files. It helps free up disk space.
 >
@@ -36,7 +36,7 @@ sudo du -sh /var/cache/apt # see the size of cache you have
 sudo apt-get clean  # to clean the cache
 ```
 
-## **Clear systemd journal logs**
+## 4. Clear systemd journal logs
 
 > This manages the systemd journal logs, displaying usage information and vacuuming old logs to free up space.
 >
@@ -46,7 +46,7 @@ sudo journalctl --disk-usage # check the storage used in old logs
 sudo journalctl --vacuum-time=3d # to clear logs before 3 days - number before d can be changed
 ```
 
-## **Clean the thumbnail cache**
+## 5. Clean the thumbnail cache
 
 > This deals with the thumbnail cache, which stores previews of images and videos. Clearing it can help in freeing up some space.
 >
@@ -56,7 +56,7 @@ du -sh ~/.cache/thumbnails # check the thumbnails size
 rm -rf ~/.cache/thumbnails/* # clean the thumbnails
 ```
 
-## **Clean up RAM cache**
+## 6. Clean up RAM cache
 
 > This command clears the RAM cache. It's worth noting that clearing the cache can impact system performance temporarily, and it's typically not necessary for regular system maintenance.
 >
