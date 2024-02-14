@@ -8,7 +8,7 @@ tags: [linux, dev-ops]
 author: Abhishake Sen Gupta
 ---
 
-## Generating Key with ssh-keygen
+## 1. Generating Key with ssh-keygen
 
 > Nowadays, most platforms recommend you to generate keys with the ed25519 algorithm.
 
@@ -24,7 +24,7 @@ ssh-keygen -t rsa -b 4096 -C "your@email.com" -f ~/.ssh/{keyname}
 
 > The *`-C`* file simply puts a comment on your public key, so you can easily make out which public key belongs to which email address
 
-## SSH with Keys
+## 2. SSH with Keys
 
 To use a specific private key to connect to a server, use:
 
@@ -32,17 +32,17 @@ To use a specific private key to connect to a server, use:
 ssh -i mykeyfile user@host
 ```
 
-## **Authorized Keys**
+## **3. Authorized Keys**
 
 > For servers, you simply need to append your public key to the file *`~/.ssh/authorized_keys`*.
 
 ```bash
-cat ~/.ssh/key.pub | ssh USER@HOST "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys"
+cat ~/.ssh/key.pub | ssh user@host "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys"
 
 ssh-copy-id -i ~/.ssh/{hostname}.pub user@host
 ```
 
-## SCP
+## 4. SCP
 
 > To upload a file to a remote server (second command is for recursively uploading):
 
@@ -68,7 +68,7 @@ scp -rp user@dest:/remotedir localpath
 rsync -av /local/dir/ server:/remote/dir/
 ```
 
-## SSH Config
+## 5. SSH Config
 
 > Create a file *`~/.ssh/config`* to manage your SSH hosts. Example:
 
@@ -128,7 +128,7 @@ Compression yes
 
 > For all other connections, the ssh client will use the options specified in the `Host * !martell` and `Host *` sections.
 
-## **Multiple GitHub Keypairs**
+## 6. Multiple GitHub Keypairs
 
 > Trying to clone different private GitHub repositories, which have different SSH keypairs associated with them, doesn’t work out of the box.
 
@@ -153,5 +153,5 @@ git clone git@github.com:abhishake63/abhishake63.git
 > Clone from either *`github-work.com`* or *`github-personal.com`*.
 
 ```bash
-git clone git@github-work.com:marcobehlerjetbrains/buildpipelines.git
+git clone git@github-work.com:abhishake63/abhishake63.git
 ```
