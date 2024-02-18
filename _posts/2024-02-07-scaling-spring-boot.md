@@ -4,7 +4,7 @@ title: How to Scale a Spring Boot Application
 subtitle: A Guide to Efficient Deployment with Docker and Nginx Load Balancer
 gh-repo: Abhishake63/spring-boot-nginx
 gh-badge: [star, fork, follow]
-tags: [spring-boot, nginx]
+tags: [spring-boot, java, nginx]
 author: Abhishake Sen Gupta
 ---
 
