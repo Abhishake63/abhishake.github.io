@@ -11,7 +11,7 @@ html {
 }
 
 body {
-  font-family: {{ site.font-family | default: "sans-serif"}};
+  font-family: {{ site.font-family | default: "sans-serif" }};
   font-size: 125%;
   color: {{ site.text-col | default: "#212529" }};
   position: relative;
