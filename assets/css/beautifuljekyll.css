@@ -11,7 +11,7 @@ html {
 }
 
 body {
-  font-family: {{ site.font-family | default: "sans-serif" }};
+  font-family: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
   font-size: 125%;
   color: {{ site.text-col | default: "#212529" }};
   position: relative;
