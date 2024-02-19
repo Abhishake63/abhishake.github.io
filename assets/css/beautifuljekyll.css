@@ -6,6 +6,10 @@ layout: null
 
 /* --- General --- */
 
+* {
+  scroll-behavior: smooth;
+}
+
 html {
   font-size: 16px
 }
