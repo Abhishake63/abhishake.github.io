@@ -126,3 +126,5 @@ curl http://localhost:8080/check
 > Check if the response contains different container identifiers.
 
 > By combining these steps, you should be able to determine whether `Nginx` is successfully `round-robin distributing requests` among your Spring Boot containers.
+
+**Here is the [Github Repo](https://github.com/Abhishake63/spring-boot-nginx) for this Article!**

@@ -203,3 +203,5 @@ curl -X POST -H 'Content-Type: application/json' -d '{"to": "<RECIPIENT_MAIL>", 
 ```
 
 > Replace the `RECIPIENT_MAIL` in the request body with a valid email.  If you get a `200` status code with a response body `true`, your mail microservice is succesfully working. Also check your recipient mail if you got the email or not.
+
+**Here is the [Github Repo](https://github.com/Abhishake63/spring-boot-email) for this Article!**
