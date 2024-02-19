@@ -85,28 +85,21 @@ public class WebMvcConfig implements WebMvcConfigurer {
 }
 ```
 
-> To send emails using Dreamhost, we set our `application.properties`:
+> To send emails using Gmail, we set our `application.properties`:
 
 ```
 server.port=8081
 
 # mail setup
 
-# for dreamhost
-
-spring.mail.host=smtp.dreamhost.com
-spring.mail.port=465
-
-# for gmail
-
-# spring.mail.host=smtp.gmail.com
-# spring.mail.port=587
+spring.mail.host=smtp.gmail.com
+spring.mail.port=587
 
 spring.mail.username=<USERNAME>
 spring.mail.password=<PASSWORD>
 ```
 
-> This is your `application.properties` file. Replace `USERNAME` with your dreamhost mail, and `PASSWORD` with the correct mail password
+> This is your `application.properties` file. Replace `USERNAME` with your gmail username, and `PASSWORD` with the correct mail password
 
 ## 5. Sending Emails
 
