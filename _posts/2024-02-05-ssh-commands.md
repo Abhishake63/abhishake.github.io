@@ -10,7 +10,7 @@ author: Abhishake Sen Gupta
 
 Welcome to our guide covering six essential SSH commands that every Linux user should know. SSH (Secure Shell) is a powerful tool for securely accessing remote servers and transferring files between them. Whether you're a beginner or an experienced user, mastering these commands will enhance your efficiency and productivity when working with SSH.
 
-## 1. **Generating SSH Keys**
+## 1. Generating SSH Keys
 
 The first command demonstrates how to generate SSH keys using the **`ssh-keygen`** tool. We provide instructions for generating keys with both the ed25519 and RSA algorithms, along with optional comments to help you identify your keys.
 
@@ -39,7 +39,7 @@ Once you have generated your SSH keys, you can use them to authenticate with rem
 ssh -i mykeyfile user@host
 ```
 
-## **3. Managing Authorized Keys**
+## 3. Managing Authorized Keys
 
 In this section, we explain how to manage authorized keys on remote servers. You'll learn how to append your public key to the **`authorized_keys`** file on the server using both manual and automated methods (**`ssh-copy-id`**).
 
@@ -49,7 +49,7 @@ cat ~/.ssh/key.pub | ssh user@host "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_
 ssh-copy-id -i ~/.ssh/{hostname}.pub user@host
 ```
 
-## 4. **Secure Copy (SCP)**
+## 4. Secure Copy (SCP)
 
 SCP is a command-line utility for securely transferring files between local and remote hosts. We demonstrate how to upload and download files to and from a remote server using SCP, including recursive file transfers.
 
@@ -81,7 +81,7 @@ scp -rp user@dest:/remotedir localpath
 rsync -av /local/dir/ server:/remote/dir/
 ```
 
-## 5. **SSH Configurations**
+## 5. SSH Configurations
 
 Managing SSH configurations can streamline your SSH connections and enhance your workflow. This command shows how to create and customize a **`config`** file in the **`~/.ssh`** directory to define SSH hosts, set connection options, and manage multiple SSH keys.
 
