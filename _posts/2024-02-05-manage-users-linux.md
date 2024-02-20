@@ -70,8 +70,6 @@ abhishake:$y$j9T$LOBsz9MWvNpM7HIA8FXl01$un2uvIgy4d:19158:0:99999:7:::
 
 ## 2. Adding & Deleting Users
 
-Next, we'll walk you through the process of adding and deleting users using commands like **`useradd`** and **`userdel`**. You'll learn how to create new user accounts, set passwords, and manage home directories. We'll also cover how to create system users, which are typically used for running services and daemons.
-
 > To create the user's home directory, use the **`-m`** option with **`useradd`**:
 >
 
@@ -100,7 +98,8 @@ ls -l /home/
 sudo useradd -r sysuser
 ```
 
-To delete a user with the home directory
+> To delete a user with the home directory
+>
 
 ```bash
 sudo userdel -r username

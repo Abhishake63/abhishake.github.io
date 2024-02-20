@@ -12,8 +12,6 @@ Welcome to our guide covering six essential SSH commands that every Linux user s
 
 ## 1. Generating SSH Keys
 
-The first command demonstrates how to generate SSH keys using the **`ssh-keygen`** tool. We provide instructions for generating keys with both the ed25519 and RSA algorithms, along with optional comments to help you identify your keys.
-
 > Nowadays, most platforms recommend you to generate keys with the ed25519 algorithm.
 >
 
@@ -33,7 +31,8 @@ ssh-keygen -t rsa -b 4096 -C "your@email.com" -f ~/.ssh/{keyname}
 
 ## 2. SSH with Keys
 
-Once you have generated your SSH keys, you can use them to authenticate with remote servers securely. This command illustrates how to specify a specific private key (**`-i`**) when connecting to a remote host using SSH.
+> To use a specific private key to connect to a server, use:
+>
 
 ```bash
 ssh -i mykeyfile user@host
@@ -41,7 +40,8 @@ ssh -i mykeyfile user@host
 
 ## 3. Managing Authorized Keys
 
-In this section, we explain how to manage authorized keys on remote servers. You'll learn how to append your public key to the **`authorized_keys`** file on the server using both manual and automated methods (**`ssh-copy-id`**).
+> In this section, we explain how to manage authorized keys on remote servers. You'll learn how to append your public key to the **`authorized_keys`** file on the server using both manual and automated methods (**`ssh-copy-id`**).
+>
 
 ```bash
 cat ~/.ssh/key.pub | ssh user@host "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys"
@@ -50,8 +50,6 @@ ssh-copy-id -i ~/.ssh/{hostname}.pub user@host
 ```
 
 ## 4. Secure Copy (SCP)
-
-SCP is a command-line utility for securely transferring files between local and remote hosts. We demonstrate how to upload and download files to and from a remote server using SCP, including recursive file transfers.
 
 > To upload a file to a remote server (second command is for recursively uploading):
 >
@@ -82,8 +80,6 @@ rsync -av /local/dir/ server:/remote/dir/
 ```
 
 ## 5. SSH Configurations
-
-Managing SSH configurations can streamline your SSH connections and enhance your workflow. This command shows how to create and customize a **`config`** file in the **`~/.ssh`** directory to define SSH hosts, set connection options, and manage multiple SSH keys.
 
 > Create a file *`~/.ssh/config`* to manage your SSH hosts. Example:
 >
@@ -150,8 +146,6 @@ Compression yes
 >
 
 ## 6. Multiple GitHub Keypairs
-
-Managing multiple SSH keys for different GitHub accounts can be challenging. This command provides a solution by demonstrating how to configure SSH aliases in the **`~/.ssh/config`** file to associate specific SSH keys with different GitHub hosts, enabling seamless access to repositories.
 
 > Trying to clone different private GitHub repositories, which have different SSH keypairs associated with them, doesn’t work out of the box.
 >
