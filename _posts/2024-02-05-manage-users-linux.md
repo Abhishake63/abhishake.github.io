@@ -2,7 +2,7 @@
 layout: post
 title: How to Manage Users in Linux
 subtitle: A Guide to managing users in your Linux Server
-gh-repo: Abhishake63/Abhishake63
+gh-repo: Abhishake63/abhishake-guides
 gh-badge: [star, fork, follow]
 tags: [linux]
 author: Abhishake Sen Gupta

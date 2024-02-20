@@ -2,7 +2,7 @@
 layout: post
 title: How to Clear /var in Linux
 subtitle: A Guide to cleaning /var directory in your Linux machine
-gh-repo: Abhishake63/Abhishake63
+gh-repo: Abhishake63/abhishake-guides
 gh-badge: [star, fork, follow]
 tags: [linux]
 author: Abhishake Sen Gupta

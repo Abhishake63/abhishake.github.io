@@ -2,7 +2,7 @@
 layout: post
 title: 6 must-know SSH Commands
 subtitle: A Guide to must-know SSH Commands
-gh-repo: Abhishake63/Abhishake63
+gh-repo: Abhishake63/abhishake-guides
 gh-badge: [star, fork, follow]
 tags: [linux, dev-ops]
 author: Abhishake Sen Gupta

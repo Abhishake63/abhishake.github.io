@@ -2,7 +2,7 @@
 layout: post
 title: 5 Steps to Secure your Linux Server
 subtitle: A Guide to Secure your Linux Server so that you can protect it from Hackers
-gh-repo: Abhishake63/Abhishake63
+gh-repo: Abhishake63/abhishake-guides
 gh-badge: [star, fork, follow]
 tags: [linux, dev-ops]
 author: Abhishake Sen Gupta
