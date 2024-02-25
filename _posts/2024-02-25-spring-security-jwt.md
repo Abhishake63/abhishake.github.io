@@ -4,7 +4,7 @@ title: Implementing Token-Based Authentication with Spring Boot and Spring Secur
 subtitle: A Comprehensive Guide to Secure Authentication and Authorization using JSON Web Tokens (JWT)
 gh-repo: Abhishake63/abhishake-guides
 gh-badge: [star, fork, follow]
-tags: [linux, dev-ops]
+tags: [spring-boot, java, spring-security]
 author: Abhishake Sen Gupta
 ---
 
