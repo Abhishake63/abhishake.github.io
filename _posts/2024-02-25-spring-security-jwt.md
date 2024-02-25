@@ -8,7 +8,7 @@ tags: [spring-boot, java, spring-security]
 author: Abhishake Sen Gupta
 ---
 
-![Crepe](https://abhishake63.github.io/assets/img/secure.jpg){: .mx-auto.d-block :}
+![Token Based Authentication](https://abhishake63.github.io/assets/img/secure.png){: .mx-auto.d-block :}
 
 Welcome to our guide on implementing token-based authentication with Spring Boot and Spring Security using JSON Web Tokens (JWT). In this tutorial, we'll walk you through the process of setting up a secure authentication system for your Spring Boot application, allowing users to register, log in, and access protected resources using JWT-based authentication.
 
