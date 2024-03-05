@@ -33,15 +33,15 @@ ssh admin@hostname
 >
 
 ```bash
-ssh-keygen -t ed25519 -b 4096 -f ~/.ssh/{hostname}
+ssh-keygen -t ed25519 -C "your@email.com" -f ~/.ssh/{hostname}
 ssh-copy-id -i ~/.ssh/{hostname}.pub admin@hostname
 ```
 
-> Copy the id_rsa file to a secure location. Please rename the file so that you can remember like **hostname.pem.** Now, try to login with this command
+> Now, try to login with this command
 >
 
 ```bash
-ssh -i /path/to/hostname.pem admin@hostname
+ssh -i ~/.ssh/{hostname} admin@hostname
 ```
 
 ## 3. Implementing Login Lockdown Measures
@@ -92,7 +92,7 @@ sudo dpkg-reconfigure --priority=low unattended-upgrades
 >
 
 ```bash
-ssh -i /path/to/hostname.pem -p 1011 admin@hostname
+ssh -i ~/.ssh/{hostname} -p 1011 admin@hostname
 ```
 
 By following these five steps, you'll significantly enhance the security posture of your Linux server, reducing the risk of unauthorized access and potential security breaches. With a proactive approach to server security, you can safeguard your valuable data and maintain the confidentiality, integrity, and availability of your server resources.
