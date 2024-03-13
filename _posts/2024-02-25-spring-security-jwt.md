@@ -451,7 +451,7 @@ public class JwtGenerator {
 @Component
 public class JwtAuthEntryPoint implements AuthenticationEntryPoint {
 
-	private static final Logger logger = LoggerFactory.getLogger(JwtAuthEntryPoint.class);
+    private static final Logger logger = LoggerFactory.getLogger(JwtAuthEntryPoint.class);
     private static final String UNAUTHORIZED_USER = "Unauthorized User";
 
     @Override
