@@ -39,7 +39,7 @@ Before we dive into the implementation, make sure you have the necessary prerequ
 ## 3. Maven Dependencies
 
 > We'll start by adding the required dependencies to your **`pom.xml`** file. These dependencies include Spring Boot starters for data JPA, security, and web, as well as PostgreSQL driver and JWT libraries.
->
+> 
 
 ```xml
 <dependency>
@@ -88,7 +88,7 @@ Before we dive into the implementation, make sure you have the necessary prerequ
 ## 4. Configure Properties
 
 > Next, we'll configure the `application.properties`, including the database connection details and JWT secret key.
->
+> 
 
 ```xml
 spring.datasource.url=jdbc:postgresql://localhost:5432/springsecurity
@@ -108,7 +108,7 @@ jwt.expirationMs= 86400000
 ## 5. Models
 
 > We'll define the necessary entity models for our application, including **`AdminEntity`**, **`UserEntity`**, and **`UserType`** enum.
->
+> 
 
 ### 5.1. AdminEntity
 
@@ -160,23 +160,23 @@ public enum UserType {
 
     ADMIN("ADMIN"), USER("USER");
 
-	private final String type;
+    private final String type;
 
-	UserType(String string) {
-		type = string;
-	}
+    UserType(String string) {
+        type = string;
+    }
 
-	@Override
-	public String toString() {
-		return type;
-	}
+    @Override
+    public String toString() {
+        return type;
+    }
 }
 ```
 
 ## 6. Service Layer
 
 > Our service layer will include services for user registration, authentication, and generating JWT tokens.
->
+> 
 
 ### 6.1. UserServiceImpl
 
@@ -184,14 +184,15 @@ public enum UserType {
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Autowired
     private UserRepo userRepo;
-
-    @Autowired
     private PasswordEncoder passwordEncoder;
-
-    @Autowired
     private JwtGenerator jwtGenerator;
+
+    UserServiceImpl(UserRepo userRepo, PasswordEncoder passwordEncoder, JwtGenerator jwtGenerator) {
+        this.userRepo = userRepo;
+        this.passwordEncoder = passwordEncoder;
+        this.jwtGenerator = jwtGenerator;
+    }
 
     @Override
     public UserEntity findById(Long id) {
@@ -233,13 +234,12 @@ public class UserServiceImpl implements UserService {
         return responseDto;
     }
 }
-
 ```
 
 ## **7. Configure Spring Security**
 
 > We'll configure Spring Security to handle authentication and authorization using JWT tokens. This includes setting up authentication entry points, authentication filters, and user details services.
->
+> 
 
 ### 7.1. SecurityConfig
 
@@ -480,7 +480,7 @@ public class AuthConfig {
 ## 8. The Controller
 
 > We'll define REST endpoints for user registration, login, and accessing protected resources. These endpoints will be secured using JWT-based authentication.
->
+> 
 
 ### 8.1. AuthController
 
@@ -529,7 +529,7 @@ public class BasicRestUserAPI {
 ## 9. Run The Application
 
 > Finally, we'll run the Spring Boot application using Maven and test the registration, login, and access to protected resources using cURL commands.
->
+> 
 
 ```bash
 mvn clean spring-boot:run
@@ -552,14 +552,14 @@ curl -X POST -H "Content-Type: application/json" -d '{"username" : "user","passw
 ### 10.3. Public User Api
 
 > After Login with User Creds, you will get a bearer token use that token below to access that API.
->
+> 
 
 ```bash
 curl -H "Authorization: Bearer <TOKEN>" http://localhost:8081/api/public/user/ -w "\n"
 ```
 
 > If you get a `200` status code with a response body `Ok`, your authentication microservice is succesfully working.
->
+> 
 
 By following this guide, you'll be able to implement a robust token-based authentication system for your Spring Boot application, providing secure access to your resources while ensuring scalability and flexibility. Whether you're building a simple web application or a complex enterprise system, JWT-based authentication with Spring Security is a powerful solution for managing user authentication and access control.
 
