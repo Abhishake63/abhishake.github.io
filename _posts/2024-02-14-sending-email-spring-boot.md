@@ -26,6 +26,7 @@ Before you begin, ensure you have met the following requirements:
 ## 3. Maven Dependencies
 
 > First, we need to add the dependencies to our `pom.xml.`
+>
 
 ```xml
 <dependency>
@@ -86,6 +87,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 ```
 
 > To send emails using Gmail, we set our `application.properties`:
+>
 
 ```
 server.port=8081
@@ -100,10 +102,12 @@ spring.mail.password=<PASSWORD>
 ```
 
 > This is your `application.properties` file. Replace `USERNAME` with your gmail username, and `PASSWORD` with the correct mail password
+>
 
 ## 5. Sending Emails
 
 > As dependency management and configuration are in place, we can use the `JavaMailSender` to send an email.
+>
 
 ### 5.1. Model
 
@@ -125,14 +129,14 @@ public class EmailDetails {
 @Service
 public class MailServiceImpl implements MailService {
 
-    @Autowired
     private JavaMailSender javaMailSender;
+
+    public MailServiceImpl(JavaMailSender javaMailSender) {
+        this.javaMailSender = javaMailSender;
+    }
 
     @Value("${spring.mail.username}")
     private String sender;
-
-    @Value("${spring.mail.cc}")
-    private String cc;
 
     @Override
     public Boolean sendMail(EmailDetails emailDetails) {
@@ -140,7 +144,6 @@ public class MailServiceImpl implements MailService {
             SimpleMailMessage mailMessage = new SimpleMailMessage();
             mailMessage.setFrom(sender);
             mailMessage.setTo(emailDetails.getTo());
-            mailMessage.setBcc(cc);
             mailMessage.setText(emailDetails.getBody());
             mailMessage.setSubject(emailDetails.getSubject());
             javaMailSender.send(mailMessage);
@@ -178,13 +181,18 @@ public class MailServiceImpl implements MailService {
 @RequestMapping("/api")
 public class EmailController {
 
-    @Autowired
     private MailService mailService;
+
+    public EmailController(MailService mailService) {
+        this.mailService = mailService;
+    }
 
     @PostMapping("/sendMail")
     public Boolean sendMail(@RequestBody EmailDetails emailDetails) {
         return mailService.sendMail(emailDetails);
     }
+
+    // curl -X POST -H 'Content-Type: application/json' -d '{"to": "<RECIPIENT_MAIL>", "subject": "test subject", "body": "test body"}' http://localhost:8081/api/sendMail -w "\n"
 }
 ```
 
@@ -203,5 +211,6 @@ curl -X POST -H 'Content-Type: application/json' -d '{"to": "<RECIPIENT_MAIL>", 
 ```
 
 > Replace the `RECIPIENT_MAIL` in the request body with a valid email.  If you get a `200` status code with a response body `true`, your mail microservice is succesfully working. Also check your recipient mail if you got the email or not.
+>
 
 **Here is the [Github Repo](https://github.com/Abhishake63/spring-boot-email) for this Article!**

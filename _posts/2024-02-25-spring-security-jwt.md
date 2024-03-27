@@ -248,10 +248,15 @@ public class UserServiceImpl implements UserService {
 @EnableWebSecurity
 public class SecurityConfig {
 
-	@Autowired
-	private JwtAuthEntryPoint jwtAuthEntryPoint;
+    private JwtAuthEntryPoint jwtAuthEntryPoint;
+    private JwtAuthenticationFilter authenticationFilter;
 
-	@Bean
+    SecurityConfig(JwtAuthEntryPoint jwtAuthEntryPoint, JwtAuthenticationFilter authenticationFilter) {
+        this.jwtAuthEntryPoint = jwtAuthEntryPoint;
+        this.authenticationFilter = authenticationFilter;
+    }
+
+    @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
         .csrf(AbstractHttpConfigurer::disable)
@@ -267,24 +272,9 @@ public class SecurityConfig {
                 .requestMatchers("/auth/**").permitAll()
                 .anyRequest().authenticated()
                 )
-        .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+        .addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
-
-	@Bean
-	AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-		return authenticationConfiguration.getAuthenticationManager();
-	}
-
-	@Bean
-	PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
-
-	@Bean
-	JwtAuthenticationFilter jwtAuthenticationFilter() {
-		return new JwtAuthenticationFilter();
-	}
 }
 ```
 
@@ -292,22 +282,17 @@ public class SecurityConfig {
 
 ```java
 @Service
+@Getter
+@Setter
 public class CustomUserDetailsService implements UserDetailsService {
 
-    @Autowired
+    private UserType userType;
     private AdminService adminService;
-
-    @Autowired
     private UserService userService;
 
-    private UserType userType;
-
-    public UserType getUserType() {
-        return userType;
-    }
-
-    public void setUserType(UserType userType) {
-        this.userType = userType;
+    CustomUserDetailsService(AdminService adminService, UserService userService) {
+        this.adminService = adminService;
+        this.userService = userService;
     }
 
     @Override
@@ -334,40 +319,43 @@ public class CustomUserDetailsService implements UserDetailsService {
 ### 7.3. JwtAuthenticationFilter
 
 ```java
+@Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-	@Autowired
-	private JwtGenerator jwtGenerator;
+    private JwtGenerator jwtGenerator;
+    private CustomUserDetailsService customUserDetailsService;
 
-	@Autowired
-	private CustomUserDetailsService customUserDetailsService;
+    JwtAuthenticationFilter(JwtGenerator jwtGenerator, CustomUserDetailsService customUserDetailsService) {
+        this.jwtGenerator = jwtGenerator;
+        this.customUserDetailsService = customUserDetailsService;
+    }
 
-	@Override
-	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
-	        throws ServletException, IOException {
+    @Override
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+            throws ServletException, IOException {
 
-		String token = getJWTfromRequest(request);
-		if(token != null && jwtGenerator.validateToken(token)) {
-			String username = jwtGenerator.getUserNameFromJWT(token);
-			String userType = jwtGenerator.getUserTypeFromJWT(token);
-			customUserDetailsService.setUserType(UserType.valueOf(userType));
-			UserDetails userDetails = customUserDetailsService.loadUserByUsername(username);
+        String token = getJWTfromRequest(request);
+        if (token != null && jwtGenerator.validateToken(token)) {
+            String username = jwtGenerator.getUserNameFromJWT(token);
+            String userType = jwtGenerator.getUserTypeFromJWT(token);
+            customUserDetailsService.setUserType(UserType.valueOf(userType));
+            UserDetails userDetails = customUserDetailsService.loadUserByUsername(username);
             UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
                     userDetails, null, userDetails.getAuthorities());
-			authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-			SecurityContextHolder.getContext().setAuthentication(authenticationToken);
-		}
-		filterChain.doFilter(request, response);
-	}
+            authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+            SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+        }
+        filterChain.doFilter(request, response);
+    }
 
-	private String getJWTfromRequest(HttpServletRequest request) {
-		String bearerToken = request.getHeader("Authorization");
-		if(bearerToken!=null &&  bearerToken.startsWith("Bearer ")) {
-			return bearerToken.substring(7);
-		} else {
-			return null;
-		}
-	}
+    private String getJWTfromRequest(HttpServletRequest request) {
+        String bearerToken = request.getHeader("Authorization");
+        if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
+            return bearerToken.substring(7);
+        } else {
+            return null;
+        }
+    }
 }
 ```
 
@@ -471,6 +459,24 @@ public class JwtAuthEntryPoint implements AuthenticationEntryPoint {
 }
 ```
 
+### 7.6. AuthConfig
+
+```java
+@Configuration
+public class AuthConfig {
+
+    @Bean
+    AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+        return authenticationConfiguration.getAuthenticationManager();
+    }
+
+    @Bean
+    PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+}
+```
+
 ## 8. The Controller
 
 > We'll define REST endpoints for user registration, login, and accessing protected resources. These endpoints will be secured using JWT-based authentication.
@@ -483,11 +489,13 @@ public class JwtAuthEntryPoint implements AuthenticationEntryPoint {
 @RequestMapping("/auth/user")
 public class AuthController {
 
-    @Autowired
     private UserService userService;
-
-    @Autowired
     private AuthenticationService authenticationService;
+
+    AuthController(UserService userService, AuthenticationService authenticationService) {
+        this.userService = userService;
+        this.authenticationService = authenticationService;
+    }
 
     @PostMapping("/reg")
     @ResponseStatus(HttpStatus.CREATED)
