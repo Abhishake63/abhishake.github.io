@@ -8,6 +8,8 @@ tags: [spring-boot, java]
 author: Abhishake Sen Gupta
 ---
 
+Welcome to our guide on implementing robust error handling in a Spring Boot application. We'll leverage Spring Boot's capabilities to create a system that effectively captures, processes, and presents errors.
+
 ## 1. Overview
 
 This guide outlines the implementation of a robust error handling system in a Spring Boot application. By leveraging Spring Boot's features, we'll create mechanisms to capture, process, and present errors effectively.

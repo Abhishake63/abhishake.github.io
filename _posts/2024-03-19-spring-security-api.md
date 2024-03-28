@@ -8,6 +8,8 @@ tags: [spring-boot, java, spring-security]
 author: Abhishake Sen Gupta
 ---
 
+Welcome to our guide on securing Spring Boot APIs using API key and secret authentication! In this comprehensive tutorial, we'll walk you through the process of implementing robust security measures to protect your APIs from unauthorized access.
+
 ## 1. Overview
 
 This guide provides a foundation for creating a Spring Boot application with Spring Security for securing APIs using API key and secret authentication.
