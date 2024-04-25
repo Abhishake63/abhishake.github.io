@@ -58,14 +58,21 @@ public class ApiKeyAuthFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
 
-        try {
+        if (checkIfApiKeyAndSecretPresentInHeader(request)) {
             Authentication authentication = authenticationService.getAuthentication(request);
             SecurityContextHolder.getContext().setAuthentication(authentication);
-        } catch (Exception exp) {
-            response.setStatus(HttpStatus.UNAUTHORIZED.value());
-            response.getWriter().write("Unauthorized");
         }
         filterChain.doFilter(request, response);
+    }
+
+    private Boolean checkIfApiKeyAndSecretPresentInHeader(HttpServletRequest request) {
+
+        String requestApiKey = request.getHeader("X-API-KEY");
+        String requestApiSecret = request.getHeader("X-API-SECRET");
+        if (requestApiKey == null && requestApiSecret == null) {
+            return false;
+        }
+        return true;
     }
 }
 ```
@@ -125,19 +132,26 @@ public class ApiKeyAuthentication extends AbstractAuthenticationToken {
 public class SecurityConfig {
 
     private ApiKeyAuthFilter apiKeyAuthFilter;
+    private AuthExceptionHandler authExceptionHandler;
 
-    SecurityConfig(ApiKeyAuthFilter apiKeyAuthFilter) {
+    SecurityConfig(ApiKeyAuthFilter apiKeyAuthFilter, AuthExceptionHandler authExceptionHandler) {
         this.apiKeyAuthFilter = apiKeyAuthFilter;
+        this.authExceptionHandler = authExceptionHandler;
     }
 
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-        http.csrf(AbstractHttpConfigurer::disable)
+        http
+        .csrf(AbstractHttpConfigurer::disable)
+        .exceptionHandling(exceptionHandling -> exceptionHandling
+            .authenticationEntryPoint(authExceptionHandler)
+        )
         .sessionManagement(sessionManagement -> sessionManagement
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         )
         .authorizeHttpRequests(authorize -> authorize
+            .requestMatchers("/not-secured").permitAll()
             .anyRequest().authenticated()
         )
         .addFilterBefore(apiKeyAuthFilter, UsernamePasswordAuthenticationFilter.class);
@@ -171,6 +185,15 @@ public class HomeController {
     public String homeEndpoint() {
         return "Your api is secure !";
     }
+
+    // curl -H "X-API-KEY: MY-KEY" -H "X-API-SECRET: MY-SECRET" http://localhost:8080/ -w "\n"
+
+    @GetMapping("/not-secured")
+    public String notSecure() {
+        return "not secure";
+    }
+
+    // curl http://localhost:8080/not-secured -w "\n"
 }
 ```
 
