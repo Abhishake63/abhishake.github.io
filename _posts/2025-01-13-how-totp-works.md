@@ -1,7 +1,7 @@
 ---
 layout: post
 title: How TOTP Works?
-subtitle: A Guide to Efficient Deployment with Docker and Nginx Load Balancer
+subtitle: A Guide to Time Based One Time Password
 gh-repo: Abhishake63/nodejs-totp-authenticator
 gh-badge: [star, fork, follow]
 tags: [nodejs, totp]
@@ -9,8 +9,6 @@ author: Abhishake Sen Gupta
 ---
 
 ## **Introduction**
-
----
 
 ### Understanding Authentication and 2FA
 
@@ -34,8 +32,6 @@ author: Abhishake Sen Gupta
 
 ## What is TOTP?
 
----
-
 - **TOTP (Time-Based One-Time Password)**: Generates unique passwords for each login attempt using time as a counter.
 - **Interval**: New password every 30 seconds.
 - **Advantages**: Addresses issues with traditional passwords (forgotten, stolen, guessed).
@@ -44,8 +40,6 @@ author: Abhishake Sen Gupta
 - **Authenticator App**: Needed on your phone, no internet required.
 
 ## OTP vs HOTP vs TOTP: How Each of These Differ?
-
----
 
 ### OTP (One-Time Password)
 
@@ -72,8 +66,6 @@ author: Abhishake Sen Gupta
 
 ## **SMS OTP vs. TOTP: Where does TOTP Shine?**
 
----
-
 ### SMS OTP
 
 - **Advantages**: Easy to implement and use.
@@ -87,8 +79,6 @@ author: Abhishake Sen Gupta
 ![image.png](https://abhishake63.github.io/assets/img/totp/image%205.png)
 
 ## How Does TOTP Work?
-
----
 
 ### Technical Breakdown
 
@@ -112,8 +102,6 @@ author: Abhishake Sen Gupta
 
 ## Benefits & Limitations of TOTP
 
----
-
 ### Benefits
 
 - **Security**: Adds an extra layer of security, making it harder for hackers to access accounts. Unique codes are not sent over a network, reducing interception risk.
@@ -126,8 +114,6 @@ author: Abhishake Sen Gupta
 
 ## Emerging Technologies in Two-Factor Authentication
 
----
-
 ### Additional Authentication Methods
 
 - **Biometric Authentication**: Uses physical attributes like fingerprints, facial recognition, or voice recognition. Examples include Apple’s Face ID and Touch ID, which offer enhanced security through unique personal characteristics.
@@ -139,8 +125,6 @@ author: Abhishake Sen Gupta
 - **TOTP**: Enhances authentication systems by generating unique, time-sensitive codes, addressing issues with passwords and OTPs for a more secure authentication experience.
 
 ## Extra
-
----
 
 ### Y2K Problem
 
