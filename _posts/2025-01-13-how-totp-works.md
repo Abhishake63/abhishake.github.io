@@ -26,9 +26,9 @@ author: Abhishake Sen Gupta
 
 - **TOTP**: Generates unique, time-sensitive codes, adding an extra security layer.
 
-![image.png](https://abhishake63.github.io/assets/img/totp/image.png)
+![img.png](https://abhishake63.github.io/assets/img/totp/img-1.png)
 
-![image.png](https://abhishake63.github.io/assets/img/totp/image%201.png)
+![img.png](https://abhishake63.github.io/assets/img/totp/img-2.png)
 
 ## What is TOTP?
 
@@ -46,7 +46,7 @@ author: Abhishake Sen Gupta
 - **Definition**: Valid for one session or transaction.
 - **Use Cases**: Sent via email or SMS for single-use verification.
 
-![image.png](https://abhishake63.github.io/assets/img/totp/image%202.png)
+![img.png](https://abhishake63.github.io/assets/img/totp/img-3.png)
 
 ### HOTP (HMAC-Based One-Time Password)
 
@@ -54,7 +54,7 @@ author: Abhishake Sen Gupta
 - **Mechanism**: Counter increments after each use.
 - **Use Cases**: Ideal for hardware tokens where clocks are not synchronized.
 
-![image.png](https://abhishake63.github.io/assets/img/totp/image%203.png)
+![img.png](https://abhishake63.github.io/assets/img/totp/img-4.png)
 
 ### TOTP (Time-Based One-Time Password)
 
@@ -62,7 +62,7 @@ author: Abhishake Sen Gupta
 - **Mechanism**: Generates passwords based on fixed time intervals (e.g., 30 seconds).
 - **Use Cases**: Commonly used in 2FA apps like Google Authenticator.
 
-![image.png](https://abhishake63.github.io/assets/img/totp/image%204.png)
+![img.png](https://abhishake63.github.io/assets/img/totp/img-5.png)
 
 ## **SMS OTP vs. TOTP: Where does TOTP Shine?**
 
@@ -76,7 +76,7 @@ author: Abhishake Sen Gupta
 - **Advantages**: More secure, doesn’t rely on external communication channels.
 - **Disadvantages**: Requires an app or hardware token, and there are potential synchronization issues.
 
-![image.png](https://abhishake63.github.io/assets/img/totp/image%205.png)
+![img.png](https://abhishake63.github.io/assets/img/totp/img-6.png)
 
 ## How Does TOTP Work?
 
