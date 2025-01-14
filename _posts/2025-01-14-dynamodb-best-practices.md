@@ -4,7 +4,7 @@ title: DynamoDB Best Practices
 subtitle: A Guide to Best Practices of DynamoDB
 gh-repo: Abhishake63/spring-boot-dynamodb
 gh-badge: [star, fork, follow]
-tags: [nodejs, totp]
+tags: [database, dynamodb]
 author: Abhishake Sen Gupta
 ---
 
@@ -67,8 +67,6 @@ author: Abhishake Sen Gupta
 ### **TTL for Expiring Data**
 
 - Use TTL attributes to automatically delete expired items.
-
----
 
 ## **Design Don’ts**
 
