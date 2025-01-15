@@ -4,7 +4,7 @@ title: Before Sharding - Steps and Alternatives
 subtitle: A Guide to When You Should Shard Your Database
 gh-repo: Abhishake63/abhishake-guides
 gh-badge: [star, fork, follow]
-tags: [database, dynamodb, aws]
+tags: [database, sharding]
 author: Abhishake Sen Gupta
 ---
 
