@@ -24,7 +24,6 @@ services:
       - "127.0.0.1:4566:4566"            # LocalStack Gateway
       - "127.0.0.1:4510-4559:4510-4559"  # external services port range
     environment:
-      # LocalStack configuration: https://docs.localstack.cloud/references/configuration/
       - DEBUG=${DEBUG:-0}
 ```
 
@@ -43,11 +42,11 @@ services:
     working_dir: /home/dynamodblocal
 ```
 
+User should have proper permission on the directory, otherwise `dynamodb-admin` won't be able to read data and throw error.
+
 ```bash
 sudo chmod 777 ./docker/dynamodb
 ```
-
-User should have proper permission on the directory, otherwise `dynamodb-admin` won't be able to read data and throw error.
 
 If you want data persistence without any fancy workaround, you should just go with the `dynamodb-local` image provided by AWS, as Localstack doesn't provide data persistence in their free image, we need to use `localstack-pro` image for that. You can also use communtity edition image of localstack `gresau/localstack-persist` for data persistence.
 
@@ -59,9 +58,10 @@ Follow the instructions [here](https://docs.localstack.cloud/user-guide/integrat
 
 You can setup your config & credentials by typing `aws configure` command, it will add your creds and config under `~/.aws/` folder in separate files named `config` & `credentials` in `default` profile. If you need to jump around different creds and config, you can leverage it using `profile` specific config & creds.
 
-```bash
-# creds file
+> ~/.aws/credentials
+>
 
+```bash
 [default]
 aws_access_key_id = key
 aws_secret_access_key = key
@@ -75,9 +75,10 @@ aws_access_key_id = key
 aws_secret_access_key = key
 ```
 
-```bash
-# config file
+> ~/.aws/config
+>
 
+```bash
 [default]
 region = us-east-1
 output = json
