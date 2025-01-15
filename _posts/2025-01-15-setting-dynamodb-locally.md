@@ -4,7 +4,7 @@ title: Setting DynamoDB Locally & Configuring AWS CLI
 subtitle: A Guide to Local Setup of DynamoDB & AWS CLI Configuration
 gh-repo: Abhishake63/abhishake-guides
 gh-badge: [star, fork, follow]
-tags: [database, dynamodb]
+tags: [database, dynamodb, aws]
 author: Abhishake Sen Gupta
 ---
 

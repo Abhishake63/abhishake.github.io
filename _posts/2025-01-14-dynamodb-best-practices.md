@@ -4,7 +4,7 @@ title: DynamoDB Best Practices
 subtitle: A Guide to Best Practices of DynamoDB
 gh-repo: Abhishake63/spring-boot-dynamodb
 gh-badge: [star, fork, follow]
-tags: [database, dynamodb]
+tags: [database, dynamodb, aws]
 author: Abhishake Sen Gupta
 ---
 
